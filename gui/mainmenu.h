@@ -10,18 +10,17 @@ QT_END_NAMESPACE
 class MainMenu : public QMainWindow {
     Q_OBJECT
 
-public:
-    MainMenu(QWidget *parent = nullptr);
-    ~MainMenu();
+    public:
+        MainMenu(QWidget *parent = nullptr);
+        ~MainMenu();
 
-private slots:
-    void on_play_button_clicked();
-    void on_exit_button_clicked();
+    private slots:
+        void on_play_button_clicked();
+        void on_settings_button_clicked();
+        void on_exit_button_clicked();
 
-    void on_settings_button_clicked();
-
-private:
-    Ui::MainMenu *ui;
+    private:
+        Ui::MainMenu* ui;
 };
 
 #endif // MAINMENU_H

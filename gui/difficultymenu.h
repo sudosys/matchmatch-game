@@ -10,12 +10,12 @@ QT_END_NAMESPACE
 class DifficultyMenu : public QDialog {
     Q_OBJECT
 
-public:
-    DifficultyMenu(QWidget *parent = nullptr);
-    ~DifficultyMenu();
+    public:
+        DifficultyMenu(QWidget *parent = nullptr);
+        ~DifficultyMenu();
 
-private:
-    Ui::DifficultyMenu *ui;
+    private:
+        Ui::DifficultyMenu* ui;
 };
 
 #endif // DIFFICULTYMENU_H

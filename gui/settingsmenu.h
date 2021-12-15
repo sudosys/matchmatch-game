@@ -10,17 +10,18 @@ QT_END_NAMESPACE
 class SettingsMenu : public QDialog {
     Q_OBJECT
 
-public:
-    SettingsMenu(QWidget *parent = nullptr);
-    ~SettingsMenu();
-    void save_settings();
+    public:
+        SettingsMenu(QWidget *parent = nullptr);
+        ~SettingsMenu();
+        void load_settings();
+        void save_settings();
 
-private slots:
-    void on_save_button_clicked();
-    void on_cancel_button_clicked();
+    private slots:
+        void on_save_button_clicked();
+        void on_cancel_button_clicked();
 
-private:
-    Ui::SettingsMenu *ui;
+    private:
+        Ui::SettingsMenu* ui;
 };
 
 #endif // SETTINGSMENU_H

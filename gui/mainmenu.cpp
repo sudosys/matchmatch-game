@@ -13,15 +13,16 @@ MainMenu::~MainMenu() {
 }
 
 void MainMenu::on_play_button_clicked() {
-    DifficultyMenu diff_menu;
-    diff_menu.setModal(true);
-    diff_menu.exec();
+    DifficultyMenu difficulty_menu;
+    difficulty_menu.setModal(true);
+    difficulty_menu.exec();
 }
 
 void MainMenu::on_settings_button_clicked() {
-    SettingsMenu set_menu;
-    set_menu.setModal(true);
-    set_menu.exec();
+    SettingsMenu settings_menu;
+    settings_menu.load_settings();
+    settings_menu.setModal(true);
+    settings_menu.exec();
 }
 
 void MainMenu::on_exit_button_clicked() {
