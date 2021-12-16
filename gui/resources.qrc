@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+   <file>../textures/card_back_textures/card_back_1.jpg</file>
+   <file>../textures/card_back_textures/card_back_2.jpg</file>
+   <file>../textures/card_back_textures/card_back_3.jpg</file>
+</qresource>                                                                     
+</RCC>

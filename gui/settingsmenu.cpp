@@ -1,8 +1,9 @@
 #include "settingsmenu.h"
 #include "ui_settingsmenu.h"
+#include "previewwindow.h"
+#include "previewwindow.cpp"
 #include <fstream>
-#include <iostream>
-#include <string>
+#include <QPixmap>
 
 SettingsMenu::SettingsMenu(QWidget *parent) : QDialog(parent), ui(new Ui::SettingsMenu) {
     ui->setupUi(this);
@@ -22,7 +23,6 @@ void SettingsMenu::load_settings() {
 
     while (getline(cfg_file, temp)) {
         file_content[row_num] = QString::fromStdString(temp);
-        std::cout << file_content[row_num].toStdString() << std::endl;
         row_num++;
     }
 
@@ -68,3 +68,12 @@ void SettingsMenu::on_save_button_clicked() {
 void SettingsMenu::on_cancel_button_clicked() {
     close();
 }
+
+void SettingsMenu::on_back_preview_button_clicked() {
+    PreviewWindow preview_window;
+    QString current_selection = ui->card_back_combo->currentText() + QString::fromStdString(".jpg");
+    preview_window.ui->texture->setPixmap(QPixmap("../textures/card_back_textures/" + current_selection));
+    preview_window.setModal(true);
+    preview_window.exec();
+}
+

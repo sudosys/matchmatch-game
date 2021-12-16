@@ -15,13 +15,14 @@ class SettingsMenu : public QDialog {
         ~SettingsMenu();
         void load_settings();
         void save_settings();
+        Ui::SettingsMenu* ui;
 
     private slots:
         void on_save_button_clicked();
         void on_cancel_button_clicked();
 
-    private:
-        Ui::SettingsMenu* ui;
+        void on_back_preview_button_clicked();
+
 };
 
 #endif // SETTINGSMENU_H

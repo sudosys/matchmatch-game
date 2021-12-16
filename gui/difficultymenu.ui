@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>320</height>
+    <width>280</width>
+    <height>280</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>320</width>
-    <height>320</height>
+    <width>280</width>
+    <height>280</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>320</width>
-    <height>320</height>
+    <width>280</width>
+    <height>280</height>
    </size>
   </property>
   <property name="cursor">
@@ -28,11 +28,11 @@
   <property name="windowTitle">
    <string>Select Difficulty</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>40</y>
+     <x>90</x>
+     <y>20</y>
      <width>106</width>
      <height>241</height>
     </rect>

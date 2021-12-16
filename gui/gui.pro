@@ -13,17 +13,24 @@ SOURCES += \
     difficultymenu.cpp \
     mainmenu.cpp \
     settingsmenu.cpp \
+    previewwindow.cpp
 
 
 HEADERS += \
     difficultymenu.h \
     mainmenu.h \
     settingsmenu.h \
+    previewwindow.h
 
 FORMS += \
     mainmenu.ui \
     difficultymenu.ui \
     settingsmenu.ui \
+    previewwindow.ui
+
+RC_ICONS += mainmenu_icon.ico \
+
+RESOURCES += resources.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

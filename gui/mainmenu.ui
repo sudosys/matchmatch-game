@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>320</height>
+    <width>280</width>
+    <height>280</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,14 +21,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>320</width>
-    <height>320</height>
+    <width>280</width>
+    <height>280</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>320</width>
-    <height>320</height>
+    <width>280</width>
+    <height>280</height>
    </size>
   </property>
   <property name="cursor">
@@ -38,11 +38,11 @@
    <string>Match Match Game</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>30</y>
+      <x>100</x>
+      <y>10</y>
       <width>85</width>
       <height>251</height>
      </rect>
@@ -72,7 +72,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
