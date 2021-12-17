@@ -14,9 +14,6 @@ class PreviewWindow : public QDialog {
         PreviewWindow(QWidget *parent = nullptr);
         ~PreviewWindow();
         Ui::PreviewWindow* ui;
-
-private slots:
-        void on_close_button_clicked();
 };
 
 #endif // PREVIEWWINDOW_H

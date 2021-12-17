@@ -8,9 +8,3 @@ PreviewWindow::PreviewWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Prev
 PreviewWindow::~PreviewWindow() {
     delete ui;
 }
-
-
-void PreviewWindow::on_close_button_clicked() {
-    close();
-}
-

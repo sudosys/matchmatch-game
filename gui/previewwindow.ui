@@ -13,13 +13,13 @@
   <property name="minimumSize">
    <size>
     <width>368</width>
-    <height>544</height>
+    <height>580</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>736</width>
-    <height>1087</height>
+    <width>9999</width>
+    <height>99999</height>
    </size>
   </property>
   <property name="cursor">
@@ -34,24 +34,11 @@
      <x>0</x>
      <y>0</y>
      <width>368</width>
-     <height>544</height>
+     <height>580</height>
     </rect>
    </property>
    <property name="text">
     <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="close_button">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>550</y>
-     <width>83</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Close</string>
    </property>
   </widget>
  </widget>

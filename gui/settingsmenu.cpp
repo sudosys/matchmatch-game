@@ -71,9 +71,31 @@ void SettingsMenu::on_cancel_button_clicked() {
 
 void SettingsMenu::on_back_preview_button_clicked() {
     PreviewWindow preview_window;
-    QString current_selection = ui->card_back_combo->currentText() + QString::fromStdString(".jpg");
+    QString current_selection = ui->card_back_combo->currentText() + QString::fromStdString(".png");
     preview_window.ui->texture->setPixmap(QPixmap("../textures/card_back_textures/" + current_selection));
     preview_window.setModal(true);
     preview_window.exec();
 }
+
+void SettingsMenu::on_front_preview_button_clicked() {
+    PreviewWindow preview_window;
+    preview_window.setGeometry(180,110,1200,600);
+    preview_window.ui->texture->setGeometry(0,0,1200,600);
+    QString current_selection = ui->card_front_combo->currentText() + QString::fromStdString(".png");
+    preview_window.ui->texture->setPixmap(QPixmap("../textures/card_front_textures/texture_previews/" + current_selection));
+    preview_window.setModal(true);
+    preview_window.exec();
+
+}
+
+void SettingsMenu::on_bg_preview_button_clicked() {
+    PreviewWindow preview_window;
+    preview_window.setGeometry(130,60,1280,720);
+    preview_window.ui->texture->setGeometry(0,0,1280,720);
+    QString current_selection = ui->bg_combo->currentText() + QString::fromStdString(".png");
+    preview_window.ui->texture->setPixmap(QPixmap("../textures/background_textures/" + current_selection));
+    preview_window.setModal(true);
+    preview_window.exec();
+}
+
 
