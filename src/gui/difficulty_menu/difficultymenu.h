@@ -14,7 +14,14 @@ class DifficultyMenu : public QDialog {
         DifficultyMenu(QWidget *parent = nullptr);
         ~DifficultyMenu();
 
-    private:
+private slots:
+        void on_easy_button_clicked();
+
+        void on_medium_button_clicked();
+
+        void on_hard_button_clicked();
+
+private:
         Ui::DifficultyMenu* ui;
 };
 

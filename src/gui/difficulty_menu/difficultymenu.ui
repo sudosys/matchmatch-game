@@ -41,7 +41,7 @@
     <item>
      <widget class="QPushButton" name="easy_button">
       <property name="text">
-       <string>Easy (3x3)</string>
+       <string>Easy (4x3)</string>
       </property>
      </widget>
     </item>
@@ -55,7 +55,7 @@
     <item>
      <widget class="QPushButton" name="hard_button">
       <property name="text">
-       <string>Hard (5x5)</string>
+       <string>Hard (4x5)</string>
       </property>
      </widget>
     </item>

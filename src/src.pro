@@ -13,22 +13,25 @@ SOURCES += \
     gui/difficulty_menu/difficultymenu.cpp \
     gui/main_menu/mainmenu.cpp \
     gui/settings_menu/settingsmenu.cpp \
-    gui/preview_window/previewwindow.cpp
+    gui/preview_window/previewwindow.cpp \
+    game_table/gametable.cpp
 
 
 HEADERS += \
     gui/difficulty_menu/difficultymenu.h \
     gui/main_menu/mainmenu.h \
     gui/settings_menu/settingsmenu.h \
-    gui/preview_window/previewwindow.h
+    gui/preview_window/previewwindow.h \
+    game_table/gametable.h
 
 FORMS += \
     gui/main_menu/mainmenu.ui \
     gui/difficulty_menu/difficultymenu.ui \
     gui/settings_menu/settingsmenu.ui \
-    gui/preview_window/previewwindow.ui
+    gui/preview_window/previewwindow.ui \
+    game_table/gametable.ui
 
-RC_ICONS += matchmatch_icon.ico \
+RC_ICONS += ../matchmatch_icon.ico \
 
 RESOURCES += resources.qrc
 

@@ -15,17 +15,17 @@ class SettingsMenu : public QDialog {
         ~SettingsMenu();
         void load_settings();
         void save_settings();
+        Ui::SettingsMenu* ui;
 
     private slots:
         void on_save_button_clicked();
         void on_cancel_button_clicked();
-        void on_card_front_preview_clicked();
         void on_card_back_combo_currentTextChanged(const QString &arg1);
-
+        void on_card_front_preview_clicked();
         void on_bg_preview_clicked();
 
 private:
-        Ui::SettingsMenu* ui;
+
 
 };
 
