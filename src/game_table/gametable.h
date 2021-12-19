@@ -20,10 +20,12 @@ class GameTable : public QDialog {
         void flip_card();
         void create_cards(int number_of_cards);
         int find_card_index(QPushButton* card);
+        void card_front_generator(int number_of_cards);
 
     private:
          Ui::GameTable* ui;
          std::vector<QPushButton*>* cards;
+         std::vector<int>* card_fronts;
          QGridLayout* card_layout;
 };
 
