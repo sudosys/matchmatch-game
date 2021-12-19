@@ -3,14 +3,11 @@
 #include <fstream>
 #include <iostream>
 #include <QPixmap>
-#include <QGridLayout>
 #include <QPushButton>
 #include <vector>
 
-std::vector<QPushButton*>* cards = new std::vector<QPushButton*>;
-QGridLayout* card_layout = new QGridLayout();
-
-GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable) {
+GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), cards(new std::vector<QPushButton*>),
+                                        card_layout(new QGridLayout()) {
     ui->setupUi(this);
 }
 
