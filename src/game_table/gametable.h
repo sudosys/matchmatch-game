@@ -17,17 +17,20 @@ class GameTable : public QDialog {
         void set_background();
         void draw_card_grid(int rows, int columns);
         QString get_card_back();
-        void flip_card(int face, QPushButton* clicked_card); // 0 -> front | 1 -> back
         void match_cards();
         void create_cards(int number_of_cards);
-        int find_card_index(QPushButton* card);
+        int find_card_index(QPushButton* card, std::vector<QPushButton*>* vector_to_check);
         void card_front_generator(int number_of_cards);
+        void flip_front();
+        void flip_back();
+        void delay(int seconds);
 
 
     private:
          Ui::GameTable* ui;
-         std::vector<QPushButton*>* cards;
-         std::vector<int>* card_fronts;
+         std::vector<QPushButton*>* card_backs;
+         std::vector<QPushButton*>* card_fronts;
+         std::vector<int>* card_front_indices;
          QGridLayout* card_layout;
          bool is_first;
          bool is_second;
