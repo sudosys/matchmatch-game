@@ -23,6 +23,7 @@ class GameTable : public QDialog {
         void card_front_generator(int number_of_cards);
         void flip_front();
         void flip_back();
+        void delay(int seconds);
 
 
     private:

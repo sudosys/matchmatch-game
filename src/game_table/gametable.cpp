@@ -4,18 +4,14 @@
 #include <iostream>
 #include <QPixmap>
 #include <QPushButton>
+#include <QTime>
 #include <vector>
 #include <random>
 #include <cstdlib>
-#ifdef _WIN32
-    #include <windows.h>
-#else
-    #include <unistd.h>
-#endif
 
 GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), card_backs(new std::vector<QPushButton*>),
-                                        card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>), card_layout(new QGridLayout()),
-                                        is_first(true), flipped_cards(0), first_card_index(-1), second_card_index(-1) {
+                                        card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
+                                        card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1), second_card_index(-1) {
     ui->setupUi(this);
 }
 
@@ -45,23 +41,8 @@ void GameTable::set_background() {
 
 }
 
-QString GameTable::get_card_back() {
-
-    std::string current_card_back;
-
-    std::ifstream cfg_file("game_settings.cfg");
-
-    getline(cfg_file, current_card_back);
-
-    current_card_back += ".png";
-
-    return QString::fromStdString(current_card_back);
-
-}
-
 void GameTable::draw_card_grid(int rows, int columns) {
 
-    QString current_card_back = get_card_back();
     int card_index = 0;
 
     card_front_generator(rows*columns);
@@ -85,33 +66,17 @@ void GameTable::draw_card_grid(int rows, int columns) {
 
 }
 
-void GameTable::flip_front() {
+QString GameTable::get_card_back() {
 
-    card_fronts->at(first_card_index)->hide();
-    card_fronts->at(second_card_index)->hide();
+    std::string current_card_back;
 
-    card_backs->at(first_card_index)->show();
-    card_backs->at(second_card_index)->show();
+    std::ifstream cfg_file("game_settings.cfg");
 
-}
+    getline(cfg_file, current_card_back);
 
-void GameTable::flip_back() {
+    current_card_back += ".png";
 
-    QPushButton* clicked_card = qobject_cast<QPushButton*>(sender());
-
-    int card_front_index = find_card_index(clicked_card, card_backs);
-
-    clicked_card->hide();
-    card_fronts->at(card_front_index)->show();
-
-    if (is_first) {
-        first_card_index = find_card_index(clicked_card, card_backs);
-        is_first = false;
-    } else {
-        second_card_index = find_card_index(clicked_card, card_backs);
-    }
-
-    flipped_cards++;
+    return QString::fromStdString(current_card_back);
 
 }
 
@@ -121,16 +86,19 @@ void GameTable::match_cards() {
 
         if (card_front_indices->at(first_card_index) == card_front_indices->at(second_card_index)) {
             std::cout << "Cards match!" << std::endl;
+            delay(1);
             card_fronts->at(first_card_index)->hide();
             card_fronts->at(second_card_index)->hide();
             flipped_cards = 0;
             is_first = true;
         } else {
             std::cout << "Cards don't match!" << std::endl;
+            delay(1);
             flip_front();
             is_first = true;
             flipped_cards = 0;
         }
+
 }
 
 void GameTable::create_cards(int number_of_cards) {
@@ -181,5 +149,49 @@ void GameTable::card_front_generator(int number_of_cards) {
     }
 
     std::shuffle(card_front_indices->begin(), card_front_indices->end(), prng);
+
+}
+
+void GameTable::flip_front() {
+
+    card_fronts->at(first_card_index)->hide();
+    card_fronts->at(second_card_index)->hide();
+
+    card_backs->at(first_card_index)->show();
+    card_backs->at(second_card_index)->show();
+
+}
+
+void GameTable::flip_back() {
+
+    QPushButton* clicked_card = qobject_cast<QPushButton*>(sender());
+
+    int card_front_index = find_card_index(clicked_card, card_backs);
+
+    clicked_card->hide();
+    card_fronts->at(card_front_index)->show();
+
+    if (is_first) {
+        first_card_index = find_card_index(clicked_card, card_backs);
+        is_first = false;
+    } else {
+        second_card_index = find_card_index(clicked_card, card_backs);
+    }
+
+    flipped_cards++;
+
+    if (flipped_cards == 2) {
+        match_cards();
+    }
+
+}
+
+void GameTable::delay(int seconds) {
+
+    QTime die_time = QTime::currentTime().addSecs(seconds);
+
+    while (QTime::currentTime() < die_time) {
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+    }
 
 }
