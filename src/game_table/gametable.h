@@ -21,6 +21,8 @@ class GameTable : public QDialog {
         void create_cards(int number_of_cards);
         int find_card_index(QPushButton* card, std::vector<QPushButton*>* vector_to_check);
         void card_front_generator(int number_of_cards);
+        void flip_front();
+        void flip_back();
 
 
     private:

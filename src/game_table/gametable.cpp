@@ -85,7 +85,18 @@ void GameTable::draw_card_grid(int rows, int columns) {
 
 }
 
-void GameTable::match_cards() {
+void GameTable::flip_front() {
+
+    card_fronts->at(first_card_index)->hide();
+    card_fronts->at(second_card_index)->hide();
+
+    card_backs->at(first_card_index)->show();
+    card_backs->at(second_card_index)->show();
+
+}
+
+void GameTable::flip_back() {
+
     QPushButton* clicked_card = qobject_cast<QPushButton*>(sender());
 
     int card_front_index = find_card_index(clicked_card, card_backs);
@@ -98,12 +109,13 @@ void GameTable::match_cards() {
         is_first = false;
     } else {
         second_card_index = find_card_index(clicked_card, card_backs);
-
     }
 
     flipped_cards++;
 
-    if (flipped_cards == 2) {
+}
+
+void GameTable::match_cards() {
 
         std::cout << first_card_index << "  " << second_card_index << std::endl;
 
@@ -115,17 +127,10 @@ void GameTable::match_cards() {
             is_first = true;
         } else {
             std::cout << "Cards don't match!" << std::endl;
-
-            card_fronts->at(first_card_index)->hide();
-            card_fronts->at(second_card_index)->hide();
-
-            card_backs->at(first_card_index)->show();
-            card_backs->at(second_card_index)->show();
-
-            flipped_cards = 0;
+            flip_front();
             is_first = true;
+            flipped_cards = 0;
         }
-    }
 }
 
 void GameTable::create_cards(int number_of_cards) {
@@ -137,7 +142,7 @@ void GameTable::create_cards(int number_of_cards) {
         card_backs->at(i)->setFlat(true);
         card_backs->at(i)->setIcon(QPixmap("../textures/card_back_textures/" + get_card_back()));
         card_backs->at(i)->setIconSize(QSize(100,160));
-        QPushButton::connect(card_backs->at(i), &QPushButton::clicked, this, &GameTable::match_cards);
+        QPushButton::connect(card_backs->at(i), &QPushButton::clicked, this, &GameTable::flip_back);
         card_fronts->push_back(new QPushButton());
         card_fronts->at(i)->setFlat(true);
         card_front_texture = QString::fromStdString(std::to_string(card_front_indices->at(i))) + ".png";
