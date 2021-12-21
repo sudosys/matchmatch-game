@@ -124,8 +124,9 @@ void GameTable::match_cards() {
 
         if (card_fronts->at(first_card_index) == card_fronts->at(second_card_index)) {
             std::cout << "Cards match!" << std::endl;
-            delete cards->at(first_card_index);
-            delete cards->at(second_card_index);
+            delay(1);
+            card_fronts->at(first_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
+            card_fronts->at(second_card_index)->hide();
             flipped_cards = 0;
             is_first = true;
         } else {
