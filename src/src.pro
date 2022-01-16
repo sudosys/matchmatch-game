@@ -36,8 +36,7 @@ FORMS += \
 
 RC_ICONS += ../matchmatch_icon.ico \
 
-RESOURCES += resources.qrc \
-    kurtlar_vadisi_pisu.qrc
+RESOURCES += resources.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
