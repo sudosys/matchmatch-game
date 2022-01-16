@@ -16,14 +16,12 @@ class DifficultyMenu : public QDialog {
         ~DifficultyMenu();
 
 
-private slots:
+    private slots:
         void on_easy_button_clicked();
-
         void on_medium_button_clicked();
-
         void on_hard_button_clicked();
 
-private:
+    private:
         Ui::DifficultyMenu* ui;
         GameTable gametable_window;
 };

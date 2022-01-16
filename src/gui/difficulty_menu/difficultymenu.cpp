@@ -1,6 +1,5 @@
 #include "difficultymenu.h"
 #include "ui_difficultymenu.h"
-#include "../../game_table/gametable.h"
 
 DifficultyMenu::DifficultyMenu(QWidget *parent) : QDialog(parent), ui(new Ui::DifficultyMenu) {
     ui->setupUi(this);

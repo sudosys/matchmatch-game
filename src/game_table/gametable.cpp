@@ -48,6 +48,10 @@ void GameTable::set_background() {
 
 void GameTable::draw_card_grid(int rows, int columns) {
 
+    if (columns == 3) { difficulty = "Easy"; }
+    else if (columns == 4) { difficulty = "Medium"; }
+    else if (columns == 5) { difficulty = "Hard"; }
+
     int card_index = 0;
     number_of_cards = rows*columns;
 
@@ -99,8 +103,7 @@ void GameTable::match_cards() {
             number_of_cards -= 2;
             if (number_of_cards == 0) {
                 close();
-                EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips);
-                //endgame_window.setModal(true);
+                EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty);
                 endgame_window.exec();
             }
         } else {

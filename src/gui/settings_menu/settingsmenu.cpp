@@ -79,7 +79,6 @@ void SettingsMenu::on_card_front_preview_clicked() {
     preview_window.setWindowTitle("Card Front Texture Preview");
     QString current_selection = ui->card_front_combo->currentText() + QString::fromStdString(".png");
     preview_window.ui->texture->setPixmap(QPixmap("../textures/card_front_textures/texture_previews/" + current_selection));
-    preview_window.setModal(true);
     preview_window.exec();
 }
 
@@ -88,7 +87,6 @@ void SettingsMenu::on_bg_preview_clicked() {
     preview_window.setWindowTitle("Background Texture Preview");
     QString current_selection = ui->bg_combo->currentText() + QString::fromStdString(".png");
     preview_window.ui->texture->setPixmap(QPixmap("../textures/background_textures/" + current_selection));
-    preview_window.setModal(true);
     preview_window.exec();
 }
 

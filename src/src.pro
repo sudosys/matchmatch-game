@@ -15,6 +15,7 @@ SOURCES += \
     gui/settings_menu/settingsmenu.cpp \
     gui/preview_window/previewwindow.cpp \
     gui/endgame_window/endgamewindow.cpp \
+    gui/statistics_window/statisticswindow.cpp \
     game_table/gametable.cpp
 
 
@@ -24,6 +25,7 @@ HEADERS += \
     gui/settings_menu/settingsmenu.h \
     gui/preview_window/previewwindow.h \
     gui/endgame_window/endgamewindow.h \
+    gui/statistics_window/statisticswindow.h \
     game_table/gametable.h
 
 FORMS += \
@@ -32,6 +34,7 @@ FORMS += \
     gui/settings_menu/settingsmenu.ui \
     gui/preview_window/previewwindow.ui \
     gui/endgame_window/endgamewindow.ui \
+    gui/statistics_window/statisticswindow.ui \
     game_table/gametable.ui
 
 RC_ICONS += ../matchmatch_icon.ico \

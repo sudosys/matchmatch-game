@@ -24,7 +24,7 @@ class SettingsMenu : public QDialog {
         void on_card_front_preview_clicked();
         void on_bg_preview_clicked();
 
-private:
+    private:
 
 
 };
