@@ -24,19 +24,23 @@ GameTable::~GameTable() {
     delete card_layout;
 }
 
-void GameTable::set_background() {
+std::string GameTable::get_game_setting(int row_number) {
 
-    std::string current_bg;
-    int row_num = 0;
-
+    std::string row;
     std::ifstream cfg_file("game_settings.cfg");
+    int cur_row = 0;
 
-    while (getline(cfg_file, current_bg)) {
-        if (row_num == 2) { break; }
-        row_num++;
+    while (getline(cfg_file, row)) {
+        if (cur_row == row_number) { break; }
+        cur_row++;
     }
 
-    current_bg += ".png";
+    return row;
+}
+
+void GameTable::set_background() {
+
+    std::string current_bg = get_game_setting(2) + ".png";
 
     ui->background->setPixmap(QPixmap("../textures/background_textures/" + QString::fromStdString(current_bg)));
 
@@ -112,6 +116,7 @@ void GameTable::match_cards() {
 void GameTable::create_cards(int number_of_cards) {
 
     QString card_front_texture;
+    QString current_card_front = QString::fromStdString(get_game_setting(1)) + "/";
 
     for (int i = 0; i < number_of_cards; i++) {
         card_backs->push_back(new QPushButton());
@@ -122,7 +127,7 @@ void GameTable::create_cards(int number_of_cards) {
         card_fronts->push_back(new QPushButton());
         card_fronts->at(i)->setFlat(true);
         card_front_texture = QString::fromStdString(std::to_string(card_front_indices->at(i))) + ".png";
-        card_fronts->at(i)->setIcon(QPixmap("../textures/card_front_textures/" + card_front_texture));
+        card_fronts->at(i)->setIcon(QPixmap("../textures/card_front_textures/" + current_card_front + card_front_texture));
         card_fronts->at(i)->setIconSize(QSize(100,160));
     }
 
