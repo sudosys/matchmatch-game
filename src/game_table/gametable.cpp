@@ -1,17 +1,18 @@
-#include "game_table/gametable.h"
+#include "gametable.h"
+#include "../gui/endgame_window/endgamewindow.h"
 #include "ui_gametable.h"
 #include <fstream>
 #include <iostream>
 #include <QPixmap>
-#include <QPushButton>
 #include <QTime>
+#include <QPushButton>
 #include <vector>
 #include <random>
 #include <cstdlib>
 
 GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), card_backs(new std::vector<QPushButton*>),
                                         card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
-                                        card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1), second_card_index(-1) {
+                                        card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1), second_card_index(-1), erroneous_flips(0) {
     ui->setupUi(this);
 }
 
@@ -44,9 +45,10 @@ void GameTable::set_background() {
 void GameTable::draw_card_grid(int rows, int columns) {
 
     int card_index = 0;
+    number_of_cards = rows*columns;
 
-    card_front_generator(rows*columns);
-    create_cards(rows*columns);
+    card_front_generator(number_of_cards);
+    create_cards(number_of_cards);
 
     for (int j = 0; j < rows; j++) {
 
@@ -63,6 +65,8 @@ void GameTable::draw_card_grid(int rows, int columns) {
     }
 
     this->setLayout(card_layout);
+
+    game_timer.start();
 
 }
 
@@ -82,20 +86,24 @@ QString GameTable::get_card_back() {
 
 void GameTable::match_cards() {
 
-        std::cout << first_card_index << "  " << second_card_index << std::endl;
-
         if (card_front_indices->at(first_card_index) == card_front_indices->at(second_card_index)) {
-            std::cout << "Cards match!" << std::endl;
             delay(1);
             card_fronts->at(first_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
             card_fronts->at(second_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
             flipped_cards = 0;
             is_first = true;
+            number_of_cards -= 2;
+            if (number_of_cards == 0) {
+                close();
+                EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips);
+                //endgame_window.setModal(true);
+                endgame_window.exec();
+            }
         } else {
-            std::cout << "Cards don't match!" << std::endl;
             delay(1);
             flip_front();
             is_first = true;
+            erroneous_flips++;
             flipped_cards = 0;
         }
 
@@ -195,3 +203,4 @@ void GameTable::delay(int seconds) {
     }
 
 }
+

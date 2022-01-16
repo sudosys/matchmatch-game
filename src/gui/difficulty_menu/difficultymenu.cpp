@@ -12,7 +12,6 @@ DifficultyMenu::~DifficultyMenu() {
 
 void DifficultyMenu::on_easy_button_clicked() {
     close();
-    GameTable gametable_window;
     gametable_window.set_background();
     gametable_window.draw_card_grid(4,3);
     gametable_window.setWindowTitle("Match Match Game [Easy Difficulty]");
@@ -21,7 +20,6 @@ void DifficultyMenu::on_easy_button_clicked() {
 
 void DifficultyMenu::on_medium_button_clicked() {
     close();
-    GameTable gametable_window;
     gametable_window.set_background();
     gametable_window.draw_card_grid(4,4);
     gametable_window.setWindowTitle("Match Match Game [Medium Difficulty]");
@@ -30,7 +28,6 @@ void DifficultyMenu::on_medium_button_clicked() {
 
 void DifficultyMenu::on_hard_button_clicked() {
     close();
-    GameTable gametable_window;
     gametable_window.set_background();
     gametable_window.draw_card_grid(4,5);
     gametable_window.setWindowTitle("Match Match Game [Hard Difficulty]");

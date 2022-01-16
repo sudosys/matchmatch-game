@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QGridLayout>
+#include <QElapsedTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameTable; }
@@ -37,6 +38,9 @@ class GameTable : public QDialog {
          int flipped_cards;
          int first_card_index;
          int second_card_index;
+         int number_of_cards;
+         int erroneous_flips;
+         QElapsedTimer game_timer;
 };
 
 #endif // GAMETABLE_H

@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,6 +14,7 @@ SOURCES += \
     gui/main_menu/mainmenu.cpp \
     gui/settings_menu/settingsmenu.cpp \
     gui/preview_window/previewwindow.cpp \
+    gui/endgame_window/endgamewindow.cpp \
     game_table/gametable.cpp
 
 
@@ -22,6 +23,7 @@ HEADERS += \
     gui/main_menu/mainmenu.h \
     gui/settings_menu/settingsmenu.h \
     gui/preview_window/previewwindow.h \
+    gui/endgame_window/endgamewindow.h \
     game_table/gametable.h
 
 FORMS += \
@@ -29,6 +31,7 @@ FORMS += \
     gui/difficulty_menu/difficultymenu.ui \
     gui/settings_menu/settingsmenu.ui \
     gui/preview_window/previewwindow.ui \
+    gui/endgame_window/endgamewindow.ui \
     game_table/gametable.ui
 
 RC_ICONS += ../matchmatch_icon.ico \
