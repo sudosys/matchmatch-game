@@ -2,7 +2,6 @@
 #include "../gui/endgame_window/endgamewindow.h"
 #include "ui_gametable.h"
 #include <fstream>
-#include <iostream>
 #include <QPixmap>
 #include <QTime>
 #include <QPushButton>
@@ -14,6 +13,7 @@ GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), 
                                         card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
                                         card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1), second_card_index(-1), erroneous_flips(0) {
     ui->setupUi(this);
+    game_start_date_time = QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss").toStdString();
 }
 
 GameTable::~GameTable() {
@@ -46,6 +46,30 @@ void GameTable::set_background() {
 
 }
 
+void GameTable::create_cards(int number_of_cards) {
+
+    QString card_front_texture;
+    QString current_card_front = QString::fromStdString(get_game_setting(1)) + "/";
+
+    for (int i = 0; i < number_of_cards; i++) {
+        card_backs->push_back(new QPushButton());
+        card_backs->at(i)->setFlat(true);
+        card_backs->at(i)->setMaximumSize(100,160);
+        card_backs->at(i)->setIcon(QPixmap("../textures/card_back_textures/" + get_card_back()));
+        card_backs->at(i)->setIconSize(QSize(100,160));
+
+        QPushButton::connect(card_backs->at(i), &QPushButton::clicked, this, &GameTable::flip_back);
+
+        card_fronts->push_back(new QPushButton());
+        card_fronts->at(i)->setFlat(true);
+        card_fronts->at(i)->setMaximumSize(100,160);
+        card_front_texture = QString::fromStdString(std::to_string(card_front_indices->at(i))) + ".png";
+        card_fronts->at(i)->setIcon(QPixmap("../textures/card_front_textures/" + current_card_front + card_front_texture));
+        card_fronts->at(i)->setIconSize(QSize(100,160));
+    }
+
+}
+
 void GameTable::draw_card_grid(int rows, int columns) {
 
     if (columns == 3) { difficulty = "Easy"; }
@@ -54,6 +78,7 @@ void GameTable::draw_card_grid(int rows, int columns) {
 
     int card_index = 0;
     number_of_cards = rows*columns;
+    number_of_cards_lock = number_of_cards;
 
     card_front_generator(number_of_cards);
     create_cards(number_of_cards);
@@ -65,12 +90,13 @@ void GameTable::draw_card_grid(int rows, int columns) {
             card_layout->addWidget(card_backs->at(card_index), j, i);
             card_layout->addWidget(card_fronts->at(card_index), j, i);
             card_fronts->at(card_index)->hide();
-
             card_index++;
 
         }
 
     }
+
+    card_layout->setVerticalSpacing(0);
 
     this->setLayout(card_layout);
 
@@ -94,44 +120,35 @@ QString GameTable::get_card_back() {
 
 void GameTable::match_cards() {
 
-        if (card_front_indices->at(first_card_index) == card_front_indices->at(second_card_index)) {
+    if (card_front_indices->at(first_card_index) == card_front_indices->at(second_card_index)) {
+        lock_unlock_cards(1);
+        delay(1);
+
+        card_fronts->at(first_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
+        card_fronts->at(second_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
+        card_fronts->at(first_card_index)->setEnabled(false);
+        card_fronts->at(second_card_index)->setEnabled(false);
+
+        flipped_cards = 0;
+        is_first = true;
+        number_of_cards -= 2;
+
+        if (number_of_cards == 0) {
             delay(1);
-            card_fronts->at(first_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
-            card_fronts->at(second_card_index)->setIcon(QPixmap("../textures/void_texture.png"));
-            flipped_cards = 0;
-            is_first = true;
-            number_of_cards -= 2;
-            if (number_of_cards == 0) {
-                close();
-                EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty);
-                endgame_window.exec();
-            }
-        } else {
-            delay(1);
-            flip_front();
-            is_first = true;
-            erroneous_flips++;
-            flipped_cards = 0;
+            close();
+            EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty, game_start_date_time);
+            endgame_window.exec();
         }
 
-}
-
-void GameTable::create_cards(int number_of_cards) {
-
-    QString card_front_texture;
-    QString current_card_front = QString::fromStdString(get_game_setting(1)) + "/";
-
-    for (int i = 0; i < number_of_cards; i++) {
-        card_backs->push_back(new QPushButton());
-        card_backs->at(i)->setFlat(true);
-        card_backs->at(i)->setIcon(QPixmap("../textures/card_back_textures/" + get_card_back()));
-        card_backs->at(i)->setIconSize(QSize(100,160));
-        QPushButton::connect(card_backs->at(i), &QPushButton::clicked, this, &GameTable::flip_back);
-        card_fronts->push_back(new QPushButton());
-        card_fronts->at(i)->setFlat(true);
-        card_front_texture = QString::fromStdString(std::to_string(card_front_indices->at(i))) + ".png";
-        card_fronts->at(i)->setIcon(QPixmap("../textures/card_front_textures/" + current_card_front + card_front_texture));
-        card_fronts->at(i)->setIconSize(QSize(100,160));
+        lock_unlock_cards(0);
+    } else {
+        lock_unlock_cards(1);
+        delay(1);
+        flip_front();
+        is_first = true;
+        erroneous_flips++;
+        flipped_cards = 0;
+        lock_unlock_cards(0);
     }
 
 }
@@ -140,9 +157,7 @@ int GameTable::find_card_index(QPushButton* card, std::vector<QPushButton*>* vec
 
     auto iterator = std::find(vector_to_check->begin(), vector_to_check->end(), card);
 
-    if (iterator != vector_to_check->end()) {
-        return iterator - vector_to_check->begin();
-    }
+    if (iterator != vector_to_check->end()) { return iterator - vector_to_check->begin(); }
 
     return -1;
 }
@@ -156,9 +171,7 @@ void GameTable::card_front_generator(int number_of_cards) {
 
     for (int i = 0; i < number_of_cards; i++) {
 
-        if ((i % 2 == 0) && i != 0) {
-            index_val++;
-        }
+        if ((i % 2 == 0) && i != 0) { index_val++; }
 
         card_front_indices->push_back(index_val);
 
@@ -196,9 +209,7 @@ void GameTable::flip_back() {
 
     flipped_cards++;
 
-    if (flipped_cards == 2) {
-        match_cards();
-    }
+    if (flipped_cards == 2) { match_cards(); }
 
 }
 
@@ -212,3 +223,11 @@ void GameTable::delay(int seconds) {
 
 }
 
+void GameTable::lock_unlock_cards(int lock_or_unlock) {
+
+    for (int i = 0; i < number_of_cards_lock; i++) {
+        if (lock_or_unlock == 1) { card_backs->at(i)->blockSignals(true); }
+        else if (lock_or_unlock == 0) { card_backs->at(i)->blockSignals(false); }
+    }
+
+}

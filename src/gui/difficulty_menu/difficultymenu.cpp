@@ -32,4 +32,3 @@ void DifficultyMenu::on_hard_button_clicked() {
     gametable_window.setWindowTitle("Match Match Game [Hard Difficulty]");
     gametable_window.exec();
 }
-

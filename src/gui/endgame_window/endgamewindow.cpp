@@ -5,9 +5,10 @@
 #include <QPixmap>
 #include <QDateTime>
 
-EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, QWidget *parent) : QDialog(parent), ui(new Ui::EndGameWindow),
+EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, std::string game_start_dtime, QWidget *parent)
+                                                                                                      : QDialog(parent), ui(new Ui::EndGameWindow),
                                                                                                       elapsed_game_time(game_time), erroneous_flips(err_flips),
-                                                                                                      difficulty_level(difficulty) {
+                                                                                                      difficulty_level(difficulty), game_start_date_time(game_start_dtime) {
     ui->setupUi(this);
     game_info_label_builder(elapsed_game_time, err_flips);
 }
@@ -23,8 +24,8 @@ void EndGameWindow::on_ok_button_clicked() {
 
 void EndGameWindow::game_info_label_builder(int elapsed_game_time, int err_flips) {
 
-    int minutes = (elapsed_game_time/1000)/60;
-    int seconds = (elapsed_game_time/1000)%60;
+    minutes = (elapsed_game_time/1000)/60;
+    seconds = (elapsed_game_time/1000)%60;
 
     ui->time_elapsed->setText(QString("Time elapsed: " + QString::number(minutes) + " minutes " + QString::number(seconds) + " seconds"));
 
@@ -34,12 +35,12 @@ void EndGameWindow::game_info_label_builder(int elapsed_game_time, int err_flips
 
 void EndGameWindow::save_statistics(int elapsed_game_time, int err_flips, std::string difficulty) {
 
-    int minutes = (elapsed_game_time/1000)/60;
-    int seconds = (elapsed_game_time/1000)%60;
+    minutes = (elapsed_game_time/1000)/60;
+    seconds = (elapsed_game_time/1000)%60;
 
     std::fstream stat_file("player_statistics.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 
-    stat_file << difficulty << "," << QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss").toStdString()
-              << "," << minutes << " minute(s) " << seconds << " second(s)" << "," << err_flips << "\n";
+    stat_file << difficulty << "," << game_start_date_time << "," << minutes << " minutes "
+              << seconds << " seconds" << "," << err_flips << "\n";
 
 }

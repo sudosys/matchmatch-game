@@ -2,6 +2,8 @@
 #define SETTINGSMENU_H
 
 #include <QDialog>
+#include "gui/preview_window/previewwindow.h"
+#include <map>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class SettingsMenu; }
@@ -16,6 +18,8 @@ class SettingsMenu : public QDialog {
         void load_settings();
         void save_settings();
         Ui::SettingsMenu* ui;
+        void fill_dropbox();
+        std::string get_key_from_value(std::map<std::string, std::string>, int index);
 
     private slots:
         void on_save_button_clicked();
@@ -25,7 +29,9 @@ class SettingsMenu : public QDialog {
         void on_bg_preview_clicked();
 
     private:
-
+        PreviewWindow preview_window;
+        std::map<std::string, std::string> card_back_combobox, card_front_combobox, background_combobox;
+        std::map<std::string,std::string>::iterator mapIter;
 
 };
 
