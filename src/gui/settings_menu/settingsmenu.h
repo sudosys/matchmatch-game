@@ -27,6 +27,7 @@ class SettingsMenu : public QDialog {
         void on_card_back_combo_currentTextChanged(const QString &arg1);
         void on_card_front_preview_clicked();
         void on_bg_preview_clicked();
+        void on_about_button_clicked();
 
     private:
         PreviewWindow preview_window;

@@ -2,10 +2,8 @@
 #define GAMETABLE_H
 
 #include <QDialog>
-
 #include <QElapsedTimer>
 #include <QGridLayout>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameTable; }

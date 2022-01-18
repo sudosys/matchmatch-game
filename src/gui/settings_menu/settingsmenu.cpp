@@ -1,6 +1,7 @@
 #include "settingsmenu.h"
 #include "ui_settingsmenu.h"
 #include "gui/preview_window/previewwindow.cpp"
+#include "gui/about_window/aboutwindow.cpp"
 #include <fstream>
 #include <QPixmap>
 
@@ -81,6 +82,11 @@ void SettingsMenu::on_cancel_button_clicked() {
     close();
 }
 
+void SettingsMenu::on_about_button_clicked() {
+    AboutWindow about_window;
+    about_window.exec();
+}
+
 void SettingsMenu::on_card_back_combo_currentTextChanged(const QString &arg1) {
     std::string current_selection = card_back_combobox[arg1.toStdString()] + ".png";
     ui->card_back_preview->setPixmap(QPixmap("../textures/card_back_textures/texture_previews/" + QString::fromStdString(current_selection)));
@@ -135,3 +141,6 @@ void SettingsMenu::fill_dropbox() {
     }
 
 }
+
+
+
