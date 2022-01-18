@@ -17,6 +17,7 @@ class GameTable : public QDialog {
     public:
         GameTable(QWidget *parent = nullptr);
         ~GameTable();
+        virtual void closeEvent(QCloseEvent *e);
         std::string get_game_setting(int row_number);
         void set_background();
         void create_cards(int number_of_cards);

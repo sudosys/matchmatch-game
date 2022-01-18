@@ -5,6 +5,8 @@
 #include <QPixmap>
 #include <QTime>
 #include <QPushButton>
+#include <QMessageBox>
+#include <QCloseEvent>
 #include <vector>
 #include <random>
 #include <cstdlib>
@@ -22,6 +24,16 @@ GameTable::~GameTable() {
     delete card_fronts;
     delete card_front_indices;
     delete card_layout;
+}
+
+void GameTable::closeEvent(QCloseEvent* event) {
+
+    QMessageBox::StandardButton exit_prompt = QMessageBox::question(this, "Exit Game",
+                                              "Are you sure you want to quit?", QMessageBox::Yes|QMessageBox::No);
+
+    if (exit_prompt == QMessageBox::Yes) { event->accept(); }
+    else if (exit_prompt == QMessageBox::No) { event->ignore(); }
+
 }
 
 std::string GameTable::get_game_setting(int row_number) {
