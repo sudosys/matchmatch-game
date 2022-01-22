@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QElapsedTimer>
 #include <QGridLayout>
+#include <QSoundEffect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameTable; }
@@ -15,9 +16,10 @@ class GameTable : public QDialog {
     public:
         GameTable(QWidget *parent = nullptr);
         ~GameTable();
-        virtual void closeEvent(QCloseEvent *e);
+        virtual void closeEvent(QCloseEvent* event);
         std::string get_game_setting(int row_number);
         void set_background();
+        void init_music();
         void create_cards(int number_of_cards);
         void draw_card_grid(int rows, int columns);
         QString get_card_back();
@@ -45,6 +47,9 @@ class GameTable : public QDialog {
          std::string difficulty;
          QElapsedTimer game_timer;
          std::string game_start_date_time;
+         QSoundEffect game_music;
+         std::string music_setting;
+         bool is_game_ended;
 
 };
 

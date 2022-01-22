@@ -1,5 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/">
    <file>../matchmatch_icon_original.png</file>
+   <file>../music/game_music.wav</file>
 </qresource>                                                                     
 </RCC>

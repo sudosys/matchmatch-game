@@ -2,6 +2,7 @@
 #include "../gui/endgame_window/endgamewindow.h"
 #include "ui_gametable.h"
 #include <fstream>
+#include <iostream>
 #include <QPixmap>
 #include <QTime>
 #include <QPushButton>
@@ -13,9 +14,14 @@
 
 GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), card_backs(new std::vector<QPushButton*>),
                                         card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
-                                        card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1), second_card_index(-1), erroneous_flips(0) {
+                                        card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1),
+                                        second_card_index(-1), erroneous_flips(0), is_game_ended(false) {
     ui->setupUi(this);
+
     game_start_date_time = QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss").toStdString();
+
+    music_setting = get_game_setting(3);
+
 }
 
 GameTable::~GameTable() {
@@ -27,6 +33,8 @@ GameTable::~GameTable() {
 }
 
 void GameTable::closeEvent(QCloseEvent* event) {
+
+    if (is_game_ended == true) { return; }
 
     QMessageBox::StandardButton exit_prompt = QMessageBox::question(this, "Exit Game",
                                               "Are you sure you want to quit?", QMessageBox::Yes|QMessageBox::No);
@@ -55,6 +63,16 @@ void GameTable::set_background() {
     std::string current_bg = get_game_setting(2) + ".png";
 
     ui->background->setPixmap(QPixmap("../textures/background_textures/" + QString::fromStdString(current_bg)));
+
+}
+
+void GameTable::init_music() {
+
+    game_music.setSource(QUrl::fromLocalFile("../music/game_music.wav"));
+    game_music.setLoopCount(QSoundEffect::Infinite);
+    game_music.setVolume(0.03f);
+
+    if (music_setting == "1") { game_music.play(); }
 
 }
 
@@ -147,6 +165,7 @@ void GameTable::match_cards() {
 
         if (number_of_cards == 0) {
             delay(1);
+            is_game_ended = true;
             close();
             EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty, game_start_date_time);
             endgame_window.exec();
@@ -155,11 +174,13 @@ void GameTable::match_cards() {
         lock_unlock_cards(0);
     } else {
         lock_unlock_cards(1);
+
         delay(1);
         flip_front();
         is_first = true;
         erroneous_flips++;
         flipped_cards = 0;
+
         lock_unlock_cards(0);
     }
 
@@ -172,6 +193,7 @@ int GameTable::find_card_index(QPushButton* card, std::vector<QPushButton*>* vec
     if (iterator != vector_to_check->end()) { return iterator - vector_to_check->begin(); }
 
     return -1;
+
 }
 
 void GameTable::card_front_generator(int number_of_cards) {

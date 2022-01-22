@@ -2,6 +2,7 @@
 #define DIFFICULTYMENU_H
 
 #include <QDialog>
+#include <QSoundEffect>
 #include "../../game_table/gametable.h"
 
 QT_BEGIN_NAMESPACE
@@ -14,7 +15,6 @@ class DifficultyMenu : public QDialog {
     public:
         DifficultyMenu(QWidget *parent = nullptr);
         ~DifficultyMenu();
-
 
     private slots:
         void on_easy_button_clicked();
