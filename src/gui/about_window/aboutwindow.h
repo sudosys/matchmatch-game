@@ -14,7 +14,6 @@ class AboutWindow : public QDialog {
         AboutWindow(QWidget *parent = nullptr);
         ~AboutWindow();
 
-
     private slots:
 
     private:

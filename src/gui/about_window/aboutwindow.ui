@@ -32,7 +32,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>30</y>
+     <y>20</y>
      <width>101</width>
      <height>101</height>
     </rect>
@@ -51,13 +51,15 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>190</y>
+     <y>180</y>
      <width>161</width>
      <height>61</height>
     </rect>
    </property>
    <property name="text">
-    <string>Ahmed Taha Ergin
+    <string>Developers:
+
+Ahmed Taha Ergin
 Merve Yıldırım</string>
    </property>
    <property name="alignment">
@@ -68,13 +70,13 @@ Merve Yıldırım</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>150</y>
+     <y>120</y>
      <width>161</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Match Match Game v1.00</string>
+    <string>Match Match Game v1.06</string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
@@ -94,6 +96,22 @@ Merve Yıldırım</string>
    </property>
    <property name="text">
     <string>This software is licensed under *** license</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="build_date_time">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>150</y>
+     <width>241</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

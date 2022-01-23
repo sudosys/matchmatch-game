@@ -15,10 +15,13 @@ class StatisticsWindow : public QDialog {
         ~StatisticsWindow();
         Ui::StatisticsWindow* ui;
         void fill_table();
+        void clear_statistics_file();
+        bool is_file_empty(std::ifstream& file);
 
     private slots:
+        void on_delete_records_button_clicked();
 
-    private:
+private:
 
 };
 

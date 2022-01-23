@@ -27,7 +27,7 @@ void EndGameWindow::game_info_label_builder(int elapsed_game_time, int err_flips
     minutes = (elapsed_game_time/1000)/60;
     seconds = (elapsed_game_time/1000)%60;
 
-    ui->time_elapsed->setText(QString("Time elapsed: " + QString::number(minutes) + " minutes " + QString::number(seconds) + " seconds"));
+    ui->time_elapsed->setText(QString("Time elapsed: " + QString::number(minutes) + " minute(s) " + QString::number(seconds) + " second(s)"));
 
     ui->err_flips->setText(QString("Erroneous flips: ") + QString::number(err_flips));
 
@@ -40,7 +40,7 @@ void EndGameWindow::save_statistics(int elapsed_game_time, int err_flips, std::s
 
     std::fstream stat_file("player_statistics.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 
-    stat_file << difficulty << "," << game_start_date_time << "," << minutes << " minutes "
-              << seconds << " seconds" << "," << err_flips << "\n";
+    stat_file << difficulty << "," << game_start_date_time << "," << minutes << " minute(s) "
+              << seconds << " second(s)" << "," << err_flips << "\n";
 
 }

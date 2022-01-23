@@ -40,10 +40,10 @@
   <widget class="QTableWidget" name="statistics_table">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>30</y>
-     <width>560</width>
-     <height>360</height>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>400</height>
     </rect>
    </property>
    <property name="sizeAdjustPolicy">
@@ -69,6 +69,19 @@
      <string>Erroneous Flips</string>
     </property>
    </column>
+  </widget>
+  <widget class="QPushButton" name="delete_records_button">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>400</y>
+     <width>111</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete All Statistics</string>
+   </property>
   </widget>
  </widget>
  <resources/>
