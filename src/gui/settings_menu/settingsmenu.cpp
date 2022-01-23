@@ -45,11 +45,8 @@ void SettingsMenu::load_settings() {
         }
     }
 
-    if (file_content[3] == "1") {
-        ui->music_on->setChecked(true);
-    } else {
-        ui->music_off->setChecked(true);
-    }
+    if (file_content[3] == "1") { ui->music_on->setChecked(true); }
+    else { ui->music_off->setChecked(true); }
 
 }
 
@@ -95,6 +92,9 @@ void SettingsMenu::on_card_back_combo_currentTextChanged(const QString &arg1) {
 void SettingsMenu::on_card_front_preview_clicked() {
     preview_window.setWindowTitle("Card Front Texture Preview");
     std::string current_selection = card_front_combobox[ui->card_front_combo->currentText().toStdString()] + ".png";
+    preview_window.setMinimumSize(500,320);
+    preview_window.setMaximumSize(500,320);
+    preview_window.ui->texture->setGeometry(0,0,500,320);
     preview_window.ui->texture->setPixmap(QPixmap("../textures/card_front_textures/texture_previews/" + QString::fromStdString(current_selection)));
     preview_window.exec();
 }
@@ -102,6 +102,9 @@ void SettingsMenu::on_card_front_preview_clicked() {
 void SettingsMenu::on_bg_preview_clicked() {
     preview_window.setWindowTitle("Background Texture Preview");
     std::string current_selection = background_combobox[ui->bg_combo->currentText().toStdString()] + ".png";
+    preview_window.setMinimumSize(1280,720);
+    preview_window.setMaximumSize(1280,720);
+    preview_window.ui->texture->setGeometry(0,0,1280,720);
     preview_window.ui->texture->setPixmap(QPixmap("../textures/background_textures/" + QString::fromStdString(current_selection)));
     preview_window.exec();
 }
