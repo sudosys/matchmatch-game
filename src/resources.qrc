@@ -1,6 +1,49 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource prefix="/">
-   <file>../matchmatch_icon_original.png</file>
-   <file>../music/game_music.wav</file>
-</qresource>                                                                     
+<RCC>
+    <qresource prefix="/">
+        <file>../matchmatch_icon_original.png</file>
+        <file>../music/game_music.wav</file>
+        <file>../textures/background_textures/bg_1.png</file>
+        <file>../textures/background_textures/bg_2.png</file>
+        <file>../textures/background_textures/bg_3.png</file>
+        <file>../textures/card_back_textures/texture_previews/card_back_1.png</file>
+        <file>../textures/card_back_textures/texture_previews/card_back_2.png</file>
+        <file>../textures/card_back_textures/texture_previews/card_back_3.png</file>
+        <file>../textures/card_back_textures/card_back_1.png</file>
+        <file>../textures/card_back_textures/card_back_2.png</file>
+        <file>../textures/card_back_textures/card_back_3.png</file>
+        <file>../textures/card_front_textures/card_front_1/0.png</file>
+        <file>../textures/card_front_textures/card_front_1/1.png</file>
+        <file>../textures/card_front_textures/card_front_1/2.png</file>
+        <file>../textures/card_front_textures/card_front_1/3.png</file>
+        <file>../textures/card_front_textures/card_front_1/4.png</file>
+        <file>../textures/card_front_textures/card_front_1/5.png</file>
+        <file>../textures/card_front_textures/card_front_1/6.png</file>
+        <file>../textures/card_front_textures/card_front_1/7.png</file>
+        <file>../textures/card_front_textures/card_front_1/8.png</file>
+        <file>../textures/card_front_textures/card_front_1/9.png</file>
+        <file>../textures/card_front_textures/card_front_2/0.png</file>
+        <file>../textures/card_front_textures/card_front_2/1.png</file>
+        <file>../textures/card_front_textures/card_front_2/2.png</file>
+        <file>../textures/card_front_textures/card_front_2/3.png</file>
+        <file>../textures/card_front_textures/card_front_2/4.png</file>
+        <file>../textures/card_front_textures/card_front_2/5.png</file>
+        <file>../textures/card_front_textures/card_front_2/6.png</file>
+        <file>../textures/card_front_textures/card_front_2/7.png</file>
+        <file>../textures/card_front_textures/card_front_2/8.png</file>
+        <file>../textures/card_front_textures/card_front_2/9.png</file>
+        <file>../textures/card_front_textures/card_front_3/0.png</file>
+        <file>../textures/card_front_textures/card_front_3/1.png</file>
+        <file>../textures/card_front_textures/card_front_3/2.png</file>
+        <file>../textures/card_front_textures/card_front_3/3.png</file>
+        <file>../textures/card_front_textures/card_front_3/4.png</file>
+        <file>../textures/card_front_textures/card_front_3/5.png</file>
+        <file>../textures/card_front_textures/card_front_3/6.png</file>
+        <file>../textures/card_front_textures/card_front_3/7.png</file>
+        <file>../textures/card_front_textures/card_front_3/8.png</file>
+        <file>../textures/card_front_textures/card_front_3/9.png</file>
+        <file>../textures/card_front_textures/texture_previews/card_front_1.png</file>
+        <file>../textures/card_front_textures/texture_previews/card_front_2.png</file>
+        <file>../textures/card_front_textures/texture_previews/card_front_3.png</file>
+        <file>../textures/void_texture.png</file>
+    </qresource>
 </RCC>

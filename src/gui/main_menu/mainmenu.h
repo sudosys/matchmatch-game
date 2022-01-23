@@ -19,6 +19,7 @@ class MainMenu : public QMainWindow {
         void on_settings_button_clicked();
         void on_statistics_button_clicked();
         void on_exit_button_clicked();
+        void load_default_settings();
 
     private:
         Ui::MainMenu* ui;
