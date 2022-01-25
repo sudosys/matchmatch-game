@@ -10,7 +10,6 @@
 #include <QCloseEvent>
 #include <vector>
 #include <random>
-#include <cstdlib>
 
 GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), card_backs(new std::vector<QPushButton*>),
                                         card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
