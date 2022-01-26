@@ -2,7 +2,6 @@
 #include "../gui/endgame_window/endgamewindow.h"
 #include "ui_gametable.h"
 #include <fstream>
-#include <iostream>
 #include <QPixmap>
 #include <QTime>
 #include <QPushButton>

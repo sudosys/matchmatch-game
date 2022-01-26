@@ -2,7 +2,6 @@
 #define DIFFICULTYMENU_H
 
 #include <QDialog>
-#include <QSoundEffect>
 #include "../../game_table/gametable.h"
 
 QT_BEGIN_NAMESPACE

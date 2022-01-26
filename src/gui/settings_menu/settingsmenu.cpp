@@ -144,6 +144,3 @@ void SettingsMenu::fill_dropbox() {
     }
 
 }
-
-
-

@@ -3,7 +3,6 @@
 #include "ui_endgamewindow.h"
 #include <fstream>
 #include <QPixmap>
-#include <QDateTime>
 
 EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, std::string game_start_dtime, QWidget *parent)
                                                                                                       : QDialog(parent), ui(new Ui::EndGameWindow),
