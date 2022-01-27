@@ -258,6 +258,9 @@ void GameTable::delay(int seconds) {
 void GameTable::lock_unlock_cards(int lock_or_unlock) {
 
     for (int i = 0; i < number_of_cards_lock; i++) {
+        // cards become unclickable when signals are blocked
+        // we want them to be unclickable when 2 cards are open
+        // we didn't use setEnabled(false) because it changes the color of the card to grey
         if (lock_or_unlock == 1) { card_backs->at(i)->blockSignals(true); }
         else if (lock_or_unlock == 0) { card_backs->at(i)->blockSignals(false); }
     }

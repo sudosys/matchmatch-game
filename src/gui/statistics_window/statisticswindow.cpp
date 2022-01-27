@@ -31,6 +31,7 @@ void StatisticsWindow::fill_table() {
         row_count = ui->statistics_table->rowCount();
         ui->statistics_table->insertRow(row_count);
         std::istringstream split(row);
+        // statistics are separated by comma in the file, we parse them here
         while (getline(split, column, ',')) {
             table_item = new QTableWidgetItem(QString::fromStdString(column));
             table_item->setFlags(table_item->flags() ^ Qt::ItemIsEditable);
