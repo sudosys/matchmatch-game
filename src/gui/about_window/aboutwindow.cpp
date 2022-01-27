@@ -9,7 +9,7 @@ AboutWindow::AboutWindow(QWidget *parent) : QDialog(parent), ui(new Ui::AboutWin
     std::string build_date_time = "Built on " + date + " " + time;
 
     std::string game_name = "Match Match Game";
-    std::string game_version = "v1.09";
+    std::string game_version = "v1.10";
 
     ui->game_name->setText(QString::fromStdString(game_name + " " + game_version));
     ui->build_date_time->setText(QString::fromStdString(build_date_time));
