@@ -52,13 +52,7 @@ The things that the game keeps track of are,
 
 ## Contributing
 
-Contributions are welcomed. If you have ideas about the game please contact us.
-
-Ahmed Taha Ergin
-* Twitter: @lupolonn
-
-Merve Yıldırım
-* Twitter: @profdrmerve
+Contributions are welcomed. If you have ideas about the game please contact via Twitter (link can be found in the profile page).
 
 ## License
 
