@@ -69,6 +69,11 @@
      <string>Erroneous Flips</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>Score</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="delete_records_button">
    <property name="geometry">
