@@ -26,6 +26,7 @@ class GameTable : public QDialog {
         void match_cards();
         int find_card_index(QPushButton* card, std::vector<QPushButton*>* vector_to_check);
         void card_front_generator(int number_of_cards);
+        void flip_sound();
         void flip_front();
         void flip_back();
         void delay(int seconds);

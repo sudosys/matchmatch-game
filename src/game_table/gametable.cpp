@@ -66,7 +66,7 @@ void GameTable::set_background() {
 
 void GameTable::init_music() {
 
-    game_music.setSource(QUrl::fromLocalFile("../music/game_music.wav"));
+    game_music.setSource(QUrl::fromLocalFile("../sound/game_music.wav"));
     game_music.setLoopCount(QSoundEffect::Infinite);
     game_music.setVolume(0.03f);
 
@@ -174,6 +174,7 @@ void GameTable::match_cards() {
         lock_unlock_cards(1);
 
         delay(1);
+        flip_sound();
         flip_front();
         is_first = true;
         erroneous_flips++;
@@ -213,6 +214,15 @@ void GameTable::card_front_generator(int number_of_cards) {
 
 }
 
+void GameTable::flip_sound() {
+
+    game_music.setSource(QUrl::fromLocalFile("../sound/card_flip.wav"));
+    game_music.setLoopCount(1);
+    game_music.setVolume(0.10f);
+    game_music.play();
+
+}
+
 void GameTable::flip_front() {
 
     card_fronts->at(first_card_index)->hide();
@@ -224,6 +234,8 @@ void GameTable::flip_front() {
 }
 
 void GameTable::flip_back() {
+
+    flip_sound();
 
     QPushButton* clicked_card = qobject_cast<QPushButton*>(sender());
 
@@ -259,8 +271,8 @@ void GameTable::lock_unlock_cards(int lock_or_unlock) {
 
     for (int i = 0; i < number_of_cards_lock; i++) {
         // cards become unclickable when signals are blocked
-        // we want them to be unclickable when 2 cards are open
-        // we didn't use setEnabled(false) because it changes the color of the card to grey
+        // I want them to be unclickable when 2 cards are open
+        // I didn't use setEnabled(false) because it changes the color of the card to grey
         if (lock_or_unlock == 1) { card_backs->at(i)->blockSignals(true); }
         else if (lock_or_unlock == 0) { card_backs->at(i)->blockSignals(false); }
     }
