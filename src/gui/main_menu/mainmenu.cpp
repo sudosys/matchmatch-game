@@ -46,6 +46,7 @@ void MainMenu::load_default_settings() {
     cfg_file << "card_back_1" << "\n";
     cfg_file << "card_front_1" << "\n";
     cfg_file << "bg_1" << "\n";
+    cfg_file << "0" << "\n";
     cfg_file << "0";
 
     cfg_file.close();

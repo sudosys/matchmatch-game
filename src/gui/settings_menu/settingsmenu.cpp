@@ -16,7 +16,7 @@ SettingsMenu::~SettingsMenu() {
 
 void SettingsMenu::load_settings() {
 
-    QString file_content[4];
+    QString file_content[5];
     std::string temp;
     int row_num = 0;
 
@@ -48,6 +48,9 @@ void SettingsMenu::load_settings() {
     if (file_content[3] == "1") { ui->music_on->setChecked(true); }
     else { ui->music_off->setChecked(true); }
 
+    if (file_content[4] == "1") { ui->effect_on->setChecked(true); }
+    else { ui->effect_off->setChecked(true); }
+
 }
 
 void SettingsMenu::save_settings() {
@@ -56,15 +59,18 @@ void SettingsMenu::save_settings() {
     std::string card_front_texture = card_front_combobox[ui->card_front_combo->currentText().toStdString()];
     std::string bg_texture = background_combobox[ui->bg_combo->currentText().toStdString()];
     std::string music_status = "0";
+    std::string effect_status = "0";
 
     if (ui->music_on->isChecked()) { music_status = "1"; }
+    if (ui->effect_on->isChecked()) { effect_status = "1"; }
 
     std::ofstream cfg_file("game_settings.cfg");
 
     cfg_file << card_back_texture << "\n";
     cfg_file << card_front_texture << "\n";
     cfg_file << bg_texture << "\n";
-    cfg_file << music_status;
+    cfg_file << music_status << "\n";
+    cfg_file << effect_status;
 
     cfg_file.close();
 
@@ -133,7 +139,7 @@ void SettingsMenu::fill_dropbox() {
         ui->card_front_combo->addItem(QString::fromStdString(mapIter->first));
     }
 
-    // Background
+    // Background Combobox
 
     background_combobox.insert(std::pair<std::string, std::string>("Background 1", "bg_1"));
     background_combobox.insert(std::pair<std::string, std::string>("Background 2", "bg_2"));

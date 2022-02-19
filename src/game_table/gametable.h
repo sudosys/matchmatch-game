@@ -49,6 +49,7 @@ class GameTable : public QDialog {
          QElapsedTimer game_timer;
          std::string game_start_date_time;
          QSoundEffect game_music;
+         QSoundEffect flip_effect;
          std::string music_setting;
          bool is_game_ended;
 

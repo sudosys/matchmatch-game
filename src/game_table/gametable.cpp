@@ -66,7 +66,7 @@ void GameTable::set_background() {
 
 void GameTable::init_music() {
 
-    game_music.setSource(QUrl::fromLocalFile("../sound/game_music.wav"));
+    game_music.setSource(QUrl::fromLocalFile("../sounds/game_music.wav"));
     game_music.setLoopCount(QSoundEffect::Infinite);
     game_music.setVolume(0.03f);
 
@@ -174,7 +174,7 @@ void GameTable::match_cards() {
         lock_unlock_cards(1);
 
         delay(1);
-        flip_sound();
+        if (get_game_setting(4) == "1") { flip_sound(); }
         flip_front();
         is_first = true;
         erroneous_flips++;
@@ -216,10 +216,10 @@ void GameTable::card_front_generator(int number_of_cards) {
 
 void GameTable::flip_sound() {
 
-    game_music.setSource(QUrl::fromLocalFile("../sound/card_flip.wav"));
-    game_music.setLoopCount(1);
-    game_music.setVolume(0.10f);
-    game_music.play();
+    flip_effect.setSource(QUrl::fromLocalFile("../sounds/card_flip.wav"));
+    flip_effect.setLoopCount(1);
+    flip_effect.setVolume(0.10f);
+    flip_effect.play();
 
 }
 
@@ -235,7 +235,7 @@ void GameTable::flip_front() {
 
 void GameTable::flip_back() {
 
-    flip_sound();
+    if (get_game_setting(4) == "1") { flip_sound(); }
 
     QPushButton* clicked_card = qobject_cast<QPushButton*>(sender());
 

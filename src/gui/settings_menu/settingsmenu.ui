@@ -28,32 +28,6 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
-  <widget class="QWidget" name="layoutWidget3">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>310</y>
-     <width>91</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QRadioButton" name="music_on">
-      <property name="text">
-       <string>On</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QRadioButton" name="music_off">
-      <property name="text">
-       <string>Off</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QWidget" name="layoutWidget4">
    <property name="geometry">
     <rect>
@@ -63,7 +37,7 @@
      <height>31</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QHBoxLayout" name="save_cancel_layout">
     <item>
      <widget class="QPushButton" name="save_button">
       <property name="enabled">
@@ -103,7 +77,7 @@
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>230</y>
+     <y>190</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -116,95 +90,13 @@
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>140</y>
+     <y>130</y>
      <width>80</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
     <string>Preview</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="card_back_combo">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>50</y>
-     <width>131</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="bg_combo">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>230</y>
-     <width>131</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="card_front_combo">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>140</y>
-     <width>131</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>140</y>
-     <width>97</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Card Front Texture</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>310</y>
-     <width>32</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Music</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>230</y>
-     <width>105</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Background Texture</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>50</y>
-     <width>94</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Card Back Texture</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -216,13 +108,153 @@
      <height>31</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <layout class="QHBoxLayout" name="about_layout">
     <item>
      <widget class="QPushButton" name="about_button">
       <property name="text">
        <string>About</string>
       </property>
      </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>310</y>
+     <width>311</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="effect_layout">
+    <item>
+     <widget class="QLabel" name="sound_effects">
+      <property name="text">
+       <string>Sound Effects</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="effect_button_layout">
+      <item>
+       <widget class="QRadioButton" name="effect_on">
+        <property name="text">
+         <string>On</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="effect_off">
+        <property name="text">
+         <string>Off</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>250</y>
+     <width>311</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="music_layout">
+    <item>
+     <widget class="QLabel" name="music">
+      <property name="text">
+       <string>Music</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="music_button_layout">
+      <item>
+       <widget class="QRadioButton" name="music_on">
+        <property name="text">
+         <string>On</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="music_off">
+        <property name="text">
+         <string>Off</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>50</y>
+     <width>311</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="card_back_layout">
+    <item>
+     <widget class="QLabel" name="card_back_texture">
+      <property name="text">
+       <string>Card Back Texture</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="card_back_combo"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>130</y>
+     <width>311</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="card_front_layout">
+    <item>
+     <widget class="QLabel" name="card_front_texture">
+      <property name="text">
+       <string>Card Front Texture</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="card_front_combo"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>190</y>
+     <width>311</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="background_layout">
+    <item>
+     <widget class="QLabel" name="background_texture">
+      <property name="text">
+       <string>Background Texture</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="bg_combo"/>
     </item>
    </layout>
   </widget>
