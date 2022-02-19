@@ -50,6 +50,17 @@ void StatisticsWindow::clear_statistics_file() {
     statistics_file.open("player_statistics.txt");
 
     statistics_file.close();
+
+}
+
+void StatisticsWindow::reset_highest_scores_file() {
+
+    std::ofstream highest_scores_write("highest_scores.txt");
+
+    highest_scores_write << "0" << " " << "0" << " " << "0";
+
+    highest_scores_write.close();
+
 }
 
 bool StatisticsWindow::is_file_empty(std::ifstream& file) {
@@ -65,10 +76,10 @@ void StatisticsWindow::on_delete_records_button_clicked() {
 
     if (delete_prompt == QMessageBox::Yes) {
         clear_statistics_file();
+        reset_highest_scores_file();
         close();
         QMessageBox::information(this, "Information", "All statistics have been deleted successfully!", QMessageBox::Ok);
-    }
-    else if (delete_prompt == QMessageBox::No) { return; }
+    } else if (delete_prompt == QMessageBox::No) { return; }
 
 }
 

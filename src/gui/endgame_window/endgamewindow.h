@@ -14,8 +14,9 @@ class EndGameWindow : public QDialog {
         EndGameWindow(int elapsed_game_time, int err_flips, std::string difficulty, std::string game_start_dtime, QWidget *parent = nullptr);
         ~EndGameWindow();
         Ui::EndGameWindow* ui;
-        void game_info_label_builder(int game_time, int err_flips);
-        void save_statistics(int err_flips, std::string difficulty);
+        void game_info_label_builder();
+        void save_statistics();
+        bool high_score_check(int score);
 
     private slots:
         void on_ok_button_clicked();

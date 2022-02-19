@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>160</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>450</width>
-    <height>160</height>
+    <height>180</height>
    </size>
   </property>
   <property name="cursor">
@@ -28,24 +28,24 @@
   <property name="windowTitle">
    <string>Congratulations!</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="top_text">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>130</x>
      <y>30</y>
-     <width>171</width>
+     <width>191</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>You have matched all the cards!</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You have matched all the cards! 🎉&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="ok_button">
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>130</y>
+     <y>150</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -66,12 +66,47 @@
    <property name="text">
     <string/>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="err_flips">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>90</y>
+     <width>381</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="score">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>381</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="highest_score">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>150</y>
      <width>381</width>
      <height>21</height>
     </rect>

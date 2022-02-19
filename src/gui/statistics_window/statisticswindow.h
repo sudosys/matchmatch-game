@@ -16,6 +16,7 @@ class StatisticsWindow : public QDialog {
         Ui::StatisticsWindow* ui;
         void fill_table();
         void clear_statistics_file();
+        void reset_highest_scores_file();
         bool is_file_empty(std::ifstream& file);
 
     private slots:
