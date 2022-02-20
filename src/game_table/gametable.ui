@@ -56,14 +56,17 @@
   <widget class="QLabel" name="combo">
    <property name="geometry">
     <rect>
-     <x>1120</x>
+     <x>1150</x>
      <y>10</y>
-     <width>151</width>
+     <width>121</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

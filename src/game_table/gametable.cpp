@@ -26,7 +26,7 @@ GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), 
 
     ui->combo->setVisible(false);
 
-    ui->combo->setStyleSheet("font-weight: bold; font-size: 30px;");
+    ui->combo->setStyleSheet("font-weight: bold; font-size: 20px;");
 
 }
 

@@ -30,17 +30,30 @@ void EndGameWindow::game_info_label_builder() {
     minutes = (elapsed_game_time/1000)/60;
     seconds = (elapsed_game_time/1000)%60;
 
-    if (erroneous_flips == 0) { erroneous_flips = 1; }
+    int err_flips = erroneous_flips;
+    int total_combo = 0, combo_reduction_factor = 0, ctrl_var = 0;
 
-    score = (1.0/(((minutes*60)+seconds)*erroneous_flips))*10000;
+    for (int combo: *combos) {
 
-    for (int combo: *combos) { score *= combo; }
+        total_combo += combo;
+
+        if (ctrl_var % 2 == 0) { combo_reduction_factor++; }
+
+        ctrl_var++;
+
+    }
+
+    total_combo -= combo_reduction_factor;
+
+    if (err_flips == 0) { err_flips = 1; }
+
+    score = (1.0/(((minutes*60)+seconds)*err_flips))*10000*total_combo;
 
     ui->time_elapsed->setText(QString("Time elapsed: " + QString::number(minutes) + " minute(s) " + QString::number(seconds) + " second(s)"));
     ui->err_flips->setText(QString("Erroneous flips: ") + QString::number(erroneous_flips));
     ui->score->setText(QString("Score: ") + QString::number(score));
     if (high_score_check(score)) {
-        ui->highest_score->setText(QString("Hey! You scored the highest score on ") + QString::fromStdString(difficulty_level) + QString(" difficulty 🥳"));
+        ui->highest_score->setText(QString("You've broken your record on ") + QString::fromStdString(difficulty_level) + QString(" difficulty 🥳"));
     }
 
 }

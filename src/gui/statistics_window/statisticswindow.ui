@@ -78,14 +78,14 @@
   <widget class="QPushButton" name="delete_records_button">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>280</x>
      <y>400</y>
-     <width>111</width>
+     <width>91</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Delete All Statistics</string>
+    <string>Delete All</string>
    </property>
   </widget>
  </widget>
