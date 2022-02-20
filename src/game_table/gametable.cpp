@@ -1,6 +1,6 @@
 #include "gametable.h"
-#include "../gui/endgame_window/endgamewindow.h"
 #include "ui_gametable.h"
+#include "../gui/endgame_window/endgamewindow.h"
 #include <QPixmap>
 #include <QTime>
 #include <QPushButton>
@@ -9,6 +9,8 @@
 #include <fstream>
 #include <vector>
 #include <random>
+
+#define MAX_NUM_OF_CARDS 4*5
 
 GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), card_backs(new std::vector<QPushButton*>),
                                         card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
@@ -214,20 +216,34 @@ int GameTable::find_card_index(QPushButton* card, std::vector<QPushButton*>* vec
 
 void GameTable::card_front_generator(int number_of_cards) {
 
-    std::random_device rnd_dev;
+    std::default_random_engine rnd_dev((unsigned)time(0));
     std::mt19937 prng(rnd_dev());
 
-    int index_val = 0;
+    int rnd_upper_bound = (MAX_NUM_OF_CARDS/2)-1;
 
-    for (int i = 0; i < number_of_cards; i++) {
+    std::uniform_int_distribution<int> index(0,rnd_upper_bound);
+    int rnd_val;
 
-        if ((i % 2 == 0) && i != 0) { index_val++; }
+    std::vector<int>* card_front_indices_ref = new std::vector<int>;
 
-        card_front_indices->push_back(index_val);
+    for (int i = 0; i < MAX_NUM_OF_CARDS/2; i++) { card_front_indices_ref->push_back(i); }
+
+    for (int i = 0; i < number_of_cards/2; i++) {
+
+        rnd_val = index(rnd_dev);
+
+        card_front_indices->push_back(card_front_indices_ref->at(rnd_val));
+        card_front_indices->push_back(card_front_indices_ref->at(rnd_val));
+
+        card_front_indices_ref->erase(card_front_indices_ref->begin()+rnd_val);
+
+        index = std::uniform_int_distribution<int>(0,--rnd_upper_bound);
 
     }
 
     std::shuffle(card_front_indices->begin(), card_front_indices->end(), prng);
+
+    delete card_front_indices_ref;
 
 }
 

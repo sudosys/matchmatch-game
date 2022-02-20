@@ -29,6 +29,9 @@ void EndGameWindow::game_info_label_builder() {
 
     minutes = (elapsed_game_time/1000)/60;
     seconds = (elapsed_game_time/1000)%60;
+
+    if (erroneous_flips == 0) { erroneous_flips = 1; }
+
     score = (1.0/(((minutes*60)+seconds)*erroneous_flips))*10000;
 
     for (int combo: *combos) { score *= combo; }
