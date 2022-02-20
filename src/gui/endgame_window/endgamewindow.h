@@ -11,7 +11,7 @@ class EndGameWindow : public QDialog {
     Q_OBJECT
 
     public:
-        EndGameWindow(int elapsed_game_time, int err_flips, std::string difficulty, std::string game_start_dtime, QWidget *parent = nullptr);
+        EndGameWindow(int elapsed_game_time, int err_flips, std::string difficulty, std::string game_start_dtime, std::vector<int>* combos_achieved, QWidget *parent = nullptr);
         ~EndGameWindow();
         Ui::EndGameWindow* ui;
         void game_info_label_builder();
@@ -27,6 +27,7 @@ class EndGameWindow : public QDialog {
         std::string difficulty_level;
         std::string game_start_date_time;
         int minutes, seconds, score;
+        std::vector<int>* combos;
 
 };
 

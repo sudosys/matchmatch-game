@@ -52,6 +52,8 @@ class GameTable : public QDialog {
          QSoundEffect flip_effect;
          std::string music_setting;
          bool is_game_ended;
+         int combo;
+         std::vector<int>* combos;
 
 };
 

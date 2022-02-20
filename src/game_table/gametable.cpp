@@ -1,24 +1,30 @@
 #include "gametable.h"
 #include "../gui/endgame_window/endgamewindow.h"
 #include "ui_gametable.h"
-#include <fstream>
 #include <QPixmap>
 #include <QTime>
 #include <QPushButton>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <fstream>
 #include <vector>
 #include <random>
 
 GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), card_backs(new std::vector<QPushButton*>),
                                         card_fronts(new std::vector<QPushButton*>), card_front_indices(new std::vector<int>),
                                         card_layout(new QGridLayout()), is_first(true), flipped_cards(0), first_card_index(-1),
-                                        second_card_index(-1), erroneous_flips(0), is_game_ended(false) {
+                                        second_card_index(-1), erroneous_flips(0), is_game_ended(false), combos(new std::vector<int>) {
     ui->setupUi(this);
 
     game_start_date_time = QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss").toStdString();
 
     music_setting = get_game_setting(3);
+
+    combo = 0;
+
+    ui->combo->setVisible(false);
+
+    ui->combo->setStyleSheet("font-weight: bold; font-size: 30px;");
 
 }
 
@@ -161,11 +167,19 @@ void GameTable::match_cards() {
         is_first = true;
         number_of_cards -= 2;
 
+        combo++;
+
+        if (combo > 1) {
+            ui->combo->setVisible(true);
+            ui->combo->setText(QString::number(combo) + QString("x Combo"));
+        }
+
         if (number_of_cards == 0) {
             delay(1);
             is_game_ended = true;
+            if (combo != 1) { combos->push_back(combo); }
             close();
-            EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty, game_start_date_time);
+            EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty, game_start_date_time, combos);
             endgame_window.exec();
         }
 
@@ -176,9 +190,12 @@ void GameTable::match_cards() {
         delay(1);
         if (get_game_setting(4) == "1") { flip_sound(); }
         flip_front();
+        flipped_cards = 0;
         is_first = true;
         erroneous_flips++;
-        flipped_cards = 0;
+        if (combo != 0 && combo != 1) { combos->push_back(combo); }
+        ui->combo->setVisible(false);
+        combo = 0;
 
         lock_unlock_cards(0);
     }

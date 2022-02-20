@@ -1,21 +1,23 @@
 #include "endgamewindow.h"
-#include "../../game_table/gametable.h"
 #include "ui_endgamewindow.h"
 #include <fstream>
-#include <filesystem>
 #include <sstream>
+#include <filesystem>
 #include <QPixmap>
 
-EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, std::string game_start_dtime, QWidget *parent)
+EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, std::string game_start_dtime, std::vector<int>* combos_achieved, QWidget *parent)
                                                                                                       : QDialog(parent), ui(new Ui::EndGameWindow),
                                                                                                       elapsed_game_time(game_time), erroneous_flips(err_flips),
-                                                                                                      difficulty_level(difficulty), game_start_date_time(game_start_dtime) {
+                                                                                                      difficulty_level(difficulty), game_start_date_time(game_start_dtime),
+                                                                                                      combos(new std::vector<int>) {
     ui->setupUi(this);
+    combos = combos_achieved;
     game_info_label_builder();
 }
 
 EndGameWindow::~EndGameWindow() {
     delete ui;
+    delete combos;
 }
 
 void EndGameWindow::on_ok_button_clicked() {
@@ -28,6 +30,8 @@ void EndGameWindow::game_info_label_builder() {
     minutes = (elapsed_game_time/1000)/60;
     seconds = (elapsed_game_time/1000)%60;
     score = (1.0/(((minutes*60)+seconds)*erroneous_flips))*10000;
+
+    for (int combo: *combos) { score *= combo; }
 
     ui->time_elapsed->setText(QString("Time elapsed: " + QString::number(minutes) + " minute(s) " + QString::number(seconds) + " second(s)"));
     ui->err_flips->setText(QString("Erroneous flips: ") + QString::number(erroneous_flips));
