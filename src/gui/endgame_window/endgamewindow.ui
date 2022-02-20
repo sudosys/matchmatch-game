@@ -102,17 +102,20 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="highest_score">
+  <widget class="QLabel" name="new_record">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>150</y>
-     <width>331</width>
+     <width>341</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

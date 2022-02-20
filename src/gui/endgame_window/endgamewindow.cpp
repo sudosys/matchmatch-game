@@ -12,7 +12,7 @@ EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficult
                                                                                                       combos(new std::vector<int>) {
     ui->setupUi(this);
     combos = combos_achieved;
-    game_info_label_builder();
+    end_game_stat_builder();
 }
 
 EndGameWindow::~EndGameWindow() {
@@ -25,7 +25,7 @@ void EndGameWindow::on_ok_button_clicked() {
     save_statistics();
 }
 
-void EndGameWindow::game_info_label_builder() {
+void EndGameWindow::end_game_stat_builder() {
 
     minutes = (elapsed_game_time/1000)/60;
     seconds = (elapsed_game_time/1000)%60;
@@ -52,6 +52,7 @@ void EndGameWindow::game_info_label_builder() {
     ui->time_elapsed->setText(QString("Time elapsed: " + QString::number(minutes) + " minute(s) " + QString::number(seconds) + " second(s)"));
     ui->err_flips->setText(QString("Erroneous flips: ") + QString::number(erroneous_flips));
     ui->score->setText(QString("Score: ") + QString::number(score));
+
     if (high_score_check(score)) {
         ui->highest_score->setText(QString("You've broken your record on ") + QString::fromStdString(difficulty_level) + QString(" difficulty 🥳"));
     }
@@ -80,7 +81,7 @@ bool EndGameWindow::high_score_check(int score) {
 
     int difficulty_index = 0;
     int row_index = 0;
-    int scores[] = {0,0,0};
+    std::vector<int> scores = {0,0,0};
     bool isHighest = false;
     std::string row;
 
@@ -95,7 +96,7 @@ bool EndGameWindow::high_score_check(int score) {
 
     while(getline(row_split, score_in_file, ' ')) {
 
-        scores[row_index] = std::stoi(score_in_file);
+        scores.at(row_index) = std::stoi(score_in_file);
 
         row_index++;
 
