@@ -132,7 +132,7 @@ void SettingsMenu::fill_dropbox() {
     // Card Front Combobox
 
     card_front_combobox.insert(std::pair<std::string, std::string>("Dota Characters", "card_front_1"));
-    card_front_combobox.insert(std::pair<std::string, std::string>("Flowers", "card_front_2"));
+    card_front_combobox.insert(std::pair<std::string, std::string>("Friends", "card_front_2"));
     card_front_combobox.insert(std::pair<std::string, std::string>("Memes", "card_front_3"));
 
     for (mapIter = card_front_combobox.begin(); mapIter != card_front_combobox.end(); mapIter++) {

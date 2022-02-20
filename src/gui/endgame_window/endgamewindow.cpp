@@ -54,7 +54,7 @@ void EndGameWindow::end_game_stat_builder() {
     ui->score->setText(QString("Score: ") + QString::number(score));
 
     if (high_score_check(score)) {
-        ui->highest_score->setText(QString("You've broken your record on ") + QString::fromStdString(difficulty_level) + QString(" difficulty 🥳"));
+        ui->new_record->setText(QString("You've broken your record on ") + QString::fromStdString(difficulty_level) + QString(" difficulty 🥳"));
     }
 
 }
