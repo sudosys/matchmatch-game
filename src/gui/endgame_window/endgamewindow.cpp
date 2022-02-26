@@ -5,11 +5,11 @@
 #include <filesystem>
 #include <QPixmap>
 
-EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, std::string game_start_dtime, std::vector<int>* combos_achieved, QWidget *parent)
+EndGameWindow::EndGameWindow(int game_time, int err_flips, std::string difficulty, std::string game_start_dtime, std::vector<int>* combos_achieved, std::string sound_effect_setting, QWidget *parent)
                                                                                                       : QDialog(parent), ui(new Ui::EndGameWindow),
                                                                                                       elapsed_game_time(game_time), erroneous_flips(err_flips),
                                                                                                       difficulty_level(difficulty), game_start_date_time(game_start_dtime),
-                                                                                                      combos(new std::vector<int>) {
+                                                                                                      combos(new std::vector<int>), is_sound_effect_enabled(sound_effect_setting) {
     ui->setupUi(this);
     combos = combos_achieved;
     end_game_stat_builder();
@@ -55,6 +55,7 @@ void EndGameWindow::end_game_stat_builder() {
 
     if (high_score_check(score)) {
         ui->new_record->setText(QString("You've broken your record on ") + QString::fromStdString(difficulty_level) + QString(" difficulty 🥳"));
+        play_new_record_sound();
     }
 
 }
@@ -116,5 +117,15 @@ bool EndGameWindow::high_score_check(int score) {
     }
 
     return isHighest;
+
+}
+
+void EndGameWindow::play_new_record_sound() {
+
+    new_record_sound.setSource(QUrl::fromLocalFile("../sounds/new_record_sound.wav"));
+    new_record_sound.setLoopCount(1);
+    new_record_sound.setVolume(0.30f);
+
+    if (is_sound_effect_enabled == "1") { new_record_sound.play(); }
 
 }

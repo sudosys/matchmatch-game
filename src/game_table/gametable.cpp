@@ -22,6 +22,8 @@ GameTable::GameTable(QWidget *parent) : QDialog(parent), ui(new Ui::GameTable), 
 
     music_setting = get_game_setting(3);
 
+    sound_effect_setting = get_game_setting(4);
+
     combo = 0;
 
     ui->combo->setVisible(false);
@@ -178,10 +180,11 @@ void GameTable::match_cards() {
 
         if (number_of_cards == 0) {
             delay(1);
+            game_music.stop();
             is_game_ended = true;
             if (combo != 1) { combos->push_back(combo); }
             close();
-            EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty, game_start_date_time, combos);
+            EndGameWindow endgame_window(game_timer.elapsed(), erroneous_flips, difficulty, game_start_date_time, combos, sound_effect_setting);
             endgame_window.exec();
         }
 
@@ -190,7 +193,7 @@ void GameTable::match_cards() {
         lock_unlock_cards(1);
 
         delay(1);
-        if (get_game_setting(4) == "1") { flip_sound(); }
+        flip_sound();
         flip_front();
         flipped_cards = 0;
         is_first = true;
@@ -252,7 +255,8 @@ void GameTable::flip_sound() {
     flip_effect.setSource(QUrl::fromLocalFile("../sounds/card_flip.wav"));
     flip_effect.setLoopCount(1);
     flip_effect.setVolume(0.10f);
-    flip_effect.play();
+
+    if (sound_effect_setting == "1") { flip_effect.play(); }
 
 }
 
