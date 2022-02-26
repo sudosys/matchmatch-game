@@ -10,17 +10,16 @@ Latest version of the game can be downloaded from the [releases](https://github.
 
 ## Build Steps
 
+> qmake.exe src.pro
+
+Then, create a folder in the project directory and cd into it
+
 Using __MinGW__:
 
-> qmake.exe src.pro
-
-Create a folder in the project directory and cd into it
 > mingw32-make.exe -j8
 
-Using __MSVC__:
-> qmake.exe src.pro
+Using __MSVC__ (Microsoft Visual C++ Compiler):
 
-Create a folder in the project directory and cd into it
 > jom.exe
 
 ## Game Settings
@@ -33,9 +32,14 @@ Players can select,
 * Card Front Texture
 * Background
 
-Also the music can be toggled on and off.
+and
 
-![settings_window](https://user-images.githubusercontent.com/67098654/151413611-c207efb2-cd06-4130-aacf-04f8c2746132.png)
+* Music
+* Sound effects (card flip sound and end game sound)
+
+can be toggled.
+
+![settings_window](https://user-images.githubusercontent.com/67098654/155855769-b7dc4e38-e284-4d8b-a3eb-6f481fd0ba60.png)
 
 ## Player Statistics
 
@@ -47,8 +51,9 @@ The things that the game keeps track of are,
 * Date & Time that the game started
 * Time elapsed
 * Erroneous flips occured in the game
+* Score of the game
 
-![player_statistics_window](https://user-images.githubusercontent.com/67098654/151417801-1122f32a-76ec-44d0-8ee4-3ee9bfd2eccf.png)
+![player_statistics_window](https://user-images.githubusercontent.com/67098654/155857650-0dc2c080-eef0-4bb1-b08c-bfdd94d065c0.png)
 
 ## Contributing
 
